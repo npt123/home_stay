@@ -1,0 +1,121 @@
+[ 2018-08-28T00:14:37+08:00 ] ::1 /home_stay/Customer/Customer/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000849s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000953s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001122s ]
+NOTIC: [2] session_start(): Cannot send session cache limiter - headers already sent C:\wamp64\www\home_stay\ThinkPHP\Common\functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0089s ]
+SQL: SELECT * FROM `customer` WHERE ( id='15120001' ) LIMIT 1   [ RunTime:0.0007s ]
+NOTIC: [8] Undefined variable: Token C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 37 行.
+
+[ 2018-08-28T00:15:15+08:00 ] ::1 /home_stay/Customer/Customer/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000510s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000608s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000732s ]
+NOTIC: [2] session_start(): Cannot send session cache limiter - headers already sent C:\wamp64\www\home_stay\ThinkPHP\Common\functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `customer` WHERE ( id='15120001' ) LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Undefined variable: Token C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 37 行.
+
+[ 2018-08-28T00:15:37+08:00 ] ::1 /home_stay/Customer/Customer/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000682s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002133s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002355s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `customer` WHERE ( id='15120001' ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: Token C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 37 行.
+
+[ 2018-08-28T00:19:10+08:00 ] ::1 /home_stay/Customer
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000057s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000851s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000772s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000921s ]
+ERR: 无法加载控制器:Index
+
+[ 2018-08-28T00:36:10+08:00 ] ::1 /home_stay/Customer/Customer/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000585s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000670s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000803s ]
+NOTIC: [2] session_start(): Cannot send session cache limiter - headers already sent C:\wamp64\www\home_stay\ThinkPHP\Common\functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0061s ]
+SQL: SELECT * FROM `customer` WHERE ( id='15120001' ) LIMIT 1   [ RunTime:0.0005s ]
+NOTIC: [8] Undefined variable: Token C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 37 行.
+
+[ 2018-08-28T00:36:18+08:00 ] ::1 /home_stay/Customer/Customer/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000582s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000739s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000894s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `customer` WHERE ( id='15120001' ) LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined variable: Token C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 37 行.
+
+[ 2018-08-28T00:37:26+08:00 ] ::1 /home_stay/Customer/Customer/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000063s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001169s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001354s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001681s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `customer` WHERE ( id='1510001' ) LIMIT 1   [ RunTime:0.0007s ]
+
+[ 2018-08-28T00:37:41+08:00 ] ::1 /home_stay/Customer/Customer/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000524s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000602s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000750s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0023s ]
+SQL: SELECT * FROM `customer` WHERE ( id='15120001' ) LIMIT 1   [ RunTime:0.0010s ]
+
+[ 2018-08-28T00:37:52+08:00 ] ::1 /home_stay/Customer/Customer/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000046s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000598s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000902s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001188s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `customer` WHERE ( id='15120001' ) LIMIT 1   [ RunTime:0.0006s ]
+NOTIC: [8] Undefined variable: Token C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 37 行.
+
+[ 2018-08-28T00:49:23+08:00 ] ::1 /home_stay/Customer/Customer/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000048s ]
+INFO: [ app_init ] --END-- [ RunTime:0.021750s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.028562s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.028830s ]
+NOTIC: [2] session_start(): Cannot send session cache limiter - headers already sent C:\wamp64\www\home_stay\ThinkPHP\Common\functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0235s ]
+SQL: SELECT * FROM `customer` WHERE ( id='15120001' ) LIMIT 1   [ RunTime:0.0036s ]
+NOTIC: [8] Undefined variable: Token C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 37 行.
+
+[ 2018-08-28T00:50:28+08:00 ] ::1 /home_stay/Customer/Customer/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000472s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000583s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000705s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `customer` WHERE ( id='15120001' ) LIMIT 1   [ RunTime:0.0006s ]
+NOTIC: [8] Undefined variable: Token C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 37 行.
+
