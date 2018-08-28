@@ -119,8 +119,8 @@ public function Logout(){
             "message" => "登录信息不匹配！",
             "timestamp" => $ctime,
             "detail" =>array(
-              "token"=>$token,
-              "t1"=>$t1
+              // "token"=>$token,
+              // "t1"=>$t1
             ),
           );
            exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
@@ -142,8 +142,8 @@ public function Logout(){
 
     }
 
-//房态管理
-    public function UpdateHouse(){
+//返回管理员信息
+public function Detail(){
       // 同login，获取post请求中的json数据并解码
       $post_str = file_get_contents('php://input');
       $post = json_decode($post_str,true);
@@ -159,7 +159,7 @@ public function Logout(){
       if(!$t1){
         $arr = array(
           "status" => 20000,
-          "message" => "用户未登录或用户名错误！",
+          "message" => "商家未登录或商家用户名错误！",
           "timestamp" => $ctime,
           "detail" =>array(),
         );
@@ -179,18 +179,209 @@ public function Logout(){
       //如果token匹配，则用户身份确认，继续操作
       else{
         //从customer表中取出用户的基本信息进行封装，并且返回
-        $find_detail = M('Customer') ->where("id='$memberId'")->find();
+        $find_detail = M('Admin') ->where("id='$adminId'")->find();
         $arr = array(
             "status" => 0,
-            "message" => "个人数据！",
+            "message" => "管理员信息！",
             "timestamp" => $ctime,
             "detail"=>array(
-              "memberInfo"=>$find_detail
+              "adminInfo"=>$find_detail
             )
         );
         exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
       }
     }
+//新建管理员
+public function Newadmin(){
+      // 同login，获取post请求中的json数据并解码
+      $post_str = file_get_contents('php://input');
+      $post = json_decode($post_str,true);
+      $ctime = date("Y-m-d H:i",time());
+      $adminId = $post['adminId'];
+      // 注，大多数操作都需要用户登陆后的token
+      $token = $post['token'];
+      //  根据用户的memberId找到session中的token，并与用户的token进行比对
+      //  如果token相同则代表登录状态正常
+      $t1 = session("token".$adminId);
+
+      //  如果token不存在，未登陆，返回错误
+      if(!$t1){
+        $arr = array(
+          "status" => 20000,
+          "message" => "商家未登录或商家用户名错误！",
+          "timestamp" => $ctime,
+          "detail" =>array(),
+        );
+         exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
+      // 如果用户的token与session中的token不匹配，则登录信息无效，返回错误
+      else if($t1 != $token){
+          $arr = array(
+            "status" => 10000,
+            "message" => "登录信息无效！",
+            "timestamp" => $ctime,
+            "detail" =>array(),
+          );
+           exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+
+      }
+      //如果token匹配，则用户身份确认，继续操作
+      else{
+        //从customer表中取出用户的基本信息进行封装，并且返回
+        $find_privilege = M('Admin') ->where("id='$adminId'")->find();
+        $privilege = $find_privilege['privilege'];
+        if ($privilege == 3){
+          M('Admin') -> add($post['detail']);
+          $arr = array(
+                        "status" => 0,
+                        "message" => "新建成功！",
+                        "timestamp" => $ctime,
+                        "detail" =>array()
+                      );
+          exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+        }
+        else{
+          $arr = array(
+            "status" => 555,
+            "message" => "权限不够！",
+            "timestamp" => $ctime,
+            "detail" =>array(),
+          );
+           exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+        }
+
+      }
+
+  }
+
+//删除用户
+public function Deletemember(){
+      // 同login，获取post请求中的json数据并解码
+      $post_str = file_get_contents('php://input');
+      $post = json_decode($post_str,true);
+      $ctime = date("Y-m-d H:i",time());
+      $adminId = $post['adminId'];
+      // 注，大多数操作都需要用户登陆后的token
+      $token = $post['token'];
+      //  根据用户的memberId找到session中的token，并与用户的token进行比对
+      //  如果token相同则代表登录状态正常
+      $t1 = session("token".$adminId);
+
+      //  如果token不存在，未登陆，返回错误
+      if(!$t1){
+        $arr = array(
+          "status" => 20000,
+          "message" => "商家未登录或商家用户名错误！",
+          "timestamp" => $ctime,
+          "detail" =>array(),
+        );
+         exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
+      // 如果用户的token与session中的token不匹配，则登录信息无效，返回错误
+      else if($t1 != $token){
+          $arr = array(
+            "status" => 10000,
+            "message" => "登录信息无效！",
+            "timestamp" => $ctime,
+            "detail" =>array(),
+          );
+           exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+
+      }
+      //如果token匹配，则用户身份确认，继续操作
+      else{
+        //从customer表中取出用户的基本信息进行封装，并且返回
+        $find_privilege = M('Admin') ->where("id='$adminId'")->find();
+        $privilege = $find_privilege['privilege'];
+        if ($privilege == 3){
+          //删除用户具体操作
+          $memberId = $post['memberId'];
+          M("Customer") ->where("id='$memberId'")->delete();
+          $arr = array(
+                        "status" => 0,
+                        "message" => "删除成功！",
+                        "timestamp" => $ctime,
+                        "detail" =>array()
+                      );
+          exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+        }
+        else{
+          $arr = array(
+            "status" => 555,
+            "message" => "权限不够！",
+            "timestamp" => $ctime,
+            "detail" =>array(),
+          );
+           exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+        }
+
+      }
+
+  }
+
+//删除管理员
+public function Deleteadmin(){
+      // 同login，获取post请求中的json数据并解码
+      $post_str = file_get_contents('php://input');
+      $post = json_decode($post_str,true);
+      $ctime = date("Y-m-d H:i",time());
+      $adminId = $post['adminId'];
+      // 注，大多数操作都需要用户登陆后的token
+      $token = $post['token'];
+      //  根据用户的memberId找到session中的token，并与用户的token进行比对
+      //  如果token相同则代表登录状态正常
+      $t1 = session("token".$adminId);
+
+      //  如果token不存在，未登陆，返回错误
+      if(!$t1){
+        $arr = array(
+          "status" => 20000,
+          "message" => "商家未登录或商家用户名错误！",
+          "timestamp" => $ctime,
+          "detail" =>array(),
+        );
+         exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
+      // 如果用户的token与session中的token不匹配，则登录信息无效，返回错误
+      else if($t1 != $token){
+          $arr = array(
+            "status" => 10000,
+            "message" => "登录信息无效！",
+            "timestamp" => $ctime,
+            "detail" =>array(),
+          );
+           exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+
+      }
+      //如果token匹配，则用户身份确认，继续操作
+      else{
+        //从customer表中取出用户的基本信息进行封装，并且返回
+        $find_privilege = M('Admin') ->where("id='$adminId'")->find();
+        $privilege = $find_privilege['privilege'];
+        if ($privilege == 3){
+          //删除用户具体操作
+          M("Admin") ->where("id='$adminId'")->delete();
+          $arr = array(
+                        "status" => 0,
+                        "message" => "删除成功！",
+                        "timestamp" => $ctime,
+                        "detail" =>array()
+                      );
+          exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+        }
+        else{
+          $arr = array(
+            "status" => 555,
+            "message" => "权限不够！",
+            "timestamp" => $ctime,
+            "detail" =>array(),
+          );
+           exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+        }
+
+      }
+
+  }
 
 }
 
