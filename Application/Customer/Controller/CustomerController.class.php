@@ -17,9 +17,31 @@ public function Login(){
         $post_str = file_get_contents('php://input');
         //  通过json_decode方法将json字符串转化为PHP的array对象
         $post = json_decode($post_str,true);
-        //  从post数中取出memberId和memberPasswd
-        $memberId = $post['memberId'];
         $memberPwd = $post['memberPasswd'];
+        //  从post数中取出memberId和memberPasswd
+        $memberEmail = $post['email'];
+
+        if($memberEmail){
+          $memberResult= M('Customer')->where("email='%s'",$memberEmail)->find();
+              if($memberResult){
+                $memberId = $memberResult['id'];
+              }
+              else{
+                $arr = array(
+                  "status" => 50001,
+                  "message" => "该用户不存在！",
+                  "timestamp" => $ctime,
+                  "detail" =>array(),
+                );
+                exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+              }
+        }
+        else{
+          $memberId = $post['memberId'];
+        }
+
+
+
         //key用于判断是否在session中已经存在用户信息
         $key = session("token".$memberId);
         //  用M方法从customer中以memberId为限定进行检索
@@ -196,7 +218,7 @@ public function Register(){
   $post = json_decode($post_str,true);
   $ctime = date("Y-m-d H:i",time());
   $email = $post['detail']['email'];
-  $find_email = M('Customer') -> where("email='$email'")->select();
+  $find_email = M('Customer') -> where("email='$email'")->find();
   //exit(json_encode( $find_email,JSON_UNESCAPED_UNICODE));
   if($find_email){
     $arr = array(
@@ -209,11 +231,18 @@ public function Register(){
                 }
   else{
     M('Customer') -> add($post['detail']);
+
+    $CustomerResult= M('Customer')->where("email='%s'",$post['detail']['email'])->find();
+
+    $MemberId = $CustomerResult['id'];
+
     $arr = array(
                   "status" => 0,
                   "message" => "注册成功！",
                   "timestamp" => $ctime,
-                  "detail" =>array()
+                  "detail" =>array(
+                    "memberId" => $MemberId
+                  )
                 );
      exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
       }
