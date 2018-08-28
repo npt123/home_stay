@@ -9,6 +9,7 @@ class CustomerController extends Controller{
 //    memberId:"",
 //    memberPasswd:""
 //  }
+//用户登陆
     public function Login(){
         // 从输入流获取原始post数据，原始数据是一串json字符串
         $post_str = file_get_contents('php://input');
@@ -17,15 +18,27 @@ class CustomerController extends Controller{
         //  从post数中取出memberId和memberPasswd
         $memberId = $post['memberId'];
         $memberPwd = $post['memberPasswd'];
-
+        //key用于判断是否在session中已经存在用户信息
+        $key = session("token".$memberId);
         //  用M方法从customer中以memberId为限定进行检索
         $find_password = M('Customer') ->where("id='$memberId'")->find();
         //  从数据库的查询结果中急password字段进行比对
         $password = $find_password['passwd'];
         //  获取时间戳，用来封装到返回的信息中
         $ctime = date("Y-m-d H:i",time());
-        //  第一层逻辑判定，如果有密码则代表该用户不存在
-        if($find_password){
+        //先判断session里是否有用户token，以确定是否已经登陆
+        if($key){
+          $arr = array(
+            "status" => 50000,
+            "message" => "你已经登陆！",
+            "timestamp" => $ctime,
+            "detail" =>array(),
+          );
+
+          exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+        }
+          //  第一层逻辑判定，如果有密码则代表该用户不存在
+        else if($find_password){
           //  第二层判定逻辑
           //  将从post中取得的memberPwd和数据库的查询结果进行比对
           if($memberPwd == $password){
@@ -73,6 +86,7 @@ class CustomerController extends Controller{
             "status" => 20000,
             "message" => "用户不存在！",
             "timestamp" => $ctime,
+
             "detail" =>array(),
           );
 
@@ -97,7 +111,7 @@ class CustomerController extends Controller{
       if(!$t1){
         $arr = array(
           "status" => 20000,
-          "message" => "用户未登录！",
+          "message" => "用户未登录或用户名错误！",
           "timestamp" => $ctime,
           "detail" =>array(),
         );
@@ -129,10 +143,57 @@ class CustomerController extends Controller{
         exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
       }
     }
+//
+
+//用户登出
+    public function Logout(){
+      $post_str = file_get_contents('php://input');
+      $post = json_decode($post_str,true);
+      $ctime = date("Y-m-d H:i",time());
+      $memberId = $post['memberId'];
+      // 注，大多数操作都需要用户登陆后的token
+      $token = $post['token'];
+      $t1 = session("token".$memberId);
+      //  如果token不存在，未登陆，返回错误
+      //exit(json_encode($t1,JSON_UNESCAPED_UNICODE));
+      if(!$t1){
+        $arr = array(
+          "status" => 20000,
+          "message" => "用户未登录或用户名错误！",
+          "timestamp" => $ctime,
+          "detail" =>array(),
+        );
+         exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
+      // 如果用户的token与session中的token不匹配，则登录信息无效，返回错误
+     if($t1 != $token){
+          $arr = array(
+            "status" => 10000,
+            "message" => "登录信息不匹配！",
+            "timestamp" => $ctime,
+            "detail" =>array(),
+          );
+           exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+
+      }
+      //如果token匹配，则用户身份确认，继续操作
+      else{
+        session_unset("token".$memberId);
+        $arr = array(
+            "status" => 0,
+            "message" => "退出登录！",
+            "timestamp" => $ctime,
+            "detail"=>array()
+        );
+        exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+
+      }
+
+
+    }
+
+
 }
-
-
-
 
 
 
