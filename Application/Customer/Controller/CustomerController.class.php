@@ -8,7 +8,7 @@ class CustomerController extends Controller{
 //  输入:{
 //    memberId:"",
 //    memberPasswd:""
-//  }
+//  } 
     public function Login(){
         // 从输入流获取原始post数据，原始数据是一串json字符串
         $post_str = file_get_contents('php://input');
