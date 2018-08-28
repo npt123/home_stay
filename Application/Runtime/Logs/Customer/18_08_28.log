@@ -385,3 +385,368 @@ INFO: [ app_begin ] --START--
 INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000682s ]
 INFO: [ app_begin ] --END-- [ RunTime:0.000859s ]
 
+[ 2018-08-28T11:19:28+08:00 ] ::1 /home_stay/Customer/Customer/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000638s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000621s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000750s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0103s ]
+SQL: SELECT * FROM `customer` WHERE ( id='15120001' ) LIMIT 1   [ RunTime:0.0095s ]
+NOTIC: [8] Undefined variable: Token C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 52 行.
+
+[ 2018-08-28T11:20:14+08:00 ] ::1 /home_stay/Customer/Customer/Detail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000490s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000530s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000642s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0130s ]
+SQL: SELECT * FROM `customer` WHERE ( id='15120001' ) LIMIT 1   [ RunTime:0.0098s ]
+
+[ 2018-08-28T11:24:02+08:00 ] ::1 /home_stay/Customer/Customer/update
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000066s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001281s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001471s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001772s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0094s ]
+SQL: UPDATE `customer` SET `id`='15120001',`firstname`='小红',`lastname`='宁',`passwd`='npt123456',`phone`='13813838438',`email`='ji1tao@zz.com',`home_address`='123Road',`post_address`='345Road',`birthday`='1998-12-12',`school`='上海大学',`balance`='0' WHERE ( id='15120001' ) [ RunTime:0.0483s ]
+
+[ 2018-08-28T11:24:39+08:00 ] ::1 /home_stay/Customer/Customer/update
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000113s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000960s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000646s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000785s ]
+
+[ 2018-08-28T11:24:57+08:00 ] ::1 /home_stay/Customer/Customer/update
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000056s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000565s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000870s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001014s ]
+
+[ 2018-08-28T11:25:27+08:00 ] ::1 /home_stay/Customer/Customer/update
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000458s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000499s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000626s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0085s ]
+SQL: UPDATE `customer` SET `id`='15120001',`firstname`='小红',`lastname`='张',`passwd`='npt123456',`phone`='13813838438',`email`='ji1tao@zz.com',`home_address`='123Road',`post_address`='345Road',`birthday`='1998-12-12',`school`='上海大学',`balance`='0' WHERE ( id='15120001' ) [ RunTime:0.0111s ]
+
+[ 2018-08-28T13:03:56+08:00 ] ::1 /home_stay/Customer/Customer/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.009627s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001367s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001481s ]
+NOTIC: [2] session_start(): Cannot send session cache limiter - headers already sent C:\wamp64\www\home_stay\ThinkPHP\Common\functions.php 第 1263 行.
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0080s ]
+SQL: SELECT * FROM `customer` WHERE ( id='15120001' ) LIMIT 1   [ RunTime:0.0078s ]
+
+[ 2018-08-28T13:04:17+08:00 ] ::1 /home_stay/Customer/Customer/logout
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000374s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000457s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000552s ]
+
+[ 2018-08-28T13:15:18+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000369s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000460s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000553s ]
+NOTIC: [8] Undefined index: email C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 198 行.
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0100s ]
+SQL: SELECT * FROM `customer` WHERE ( email='' )  [ RunTime:0.0097s ]
+ERR: 1364:Field 'firstname' doesn't have a default value
+ [ SQL语句 ] : INSERT INTO `customer` () VALUES ()
+ERR: 1364:Field 'firstname' doesn't have a default value
+ [ SQL语句 ] : INSERT INTO `customer` () VALUES ()
+
+[ 2018-08-28T13:25:19+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000370s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000451s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000543s ]
+NOTIC: [8] Undefined index: email C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 198 行.
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0108s ]
+SQL: SELECT * FROM `customer` WHERE ( email='' )  [ RunTime:0.0014s ]
+ERR: 1364:Field 'id' doesn't have a default value
+ [ SQL语句 ] : INSERT INTO `customer` () VALUES ()
+ERR: 1364:Field 'id' doesn't have a default value
+ [ SQL语句 ] : INSERT INTO `customer` () VALUES ()
+
+[ 2018-08-28T13:26:15+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000373s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000448s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000541s ]
+NOTIC: [8] Undefined index: email C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 198 行.
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0049s ]
+SQL: SELECT * FROM `customer` WHERE ( email='' )  [ RunTime:0.0003s ]
+SQL: INSERT INTO `customer` () VALUES () [ RunTime:0.0015s ]
+
+[ 2018-08-28T13:32:19+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000397s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000477s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000571s ]
+NOTIC: [8] Undefined index: email C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 198 行.
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `customer` WHERE ( email='' )  [ RunTime:0.0003s ]
+
+[ 2018-08-28T13:34:13+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000394s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000490s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000588s ]
+NOTIC: [8] Undefined index: email C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 198 行.
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `customer` WHERE ( email='' )  [ RunTime:0.0003s ]
+
+[ 2018-08-28T13:34:24+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000370s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000448s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000545s ]
+NOTIC: [8] Undefined index: email C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 198 行.
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `customer` WHERE ( email='' )  [ RunTime:0.0002s ]
+
+[ 2018-08-28T13:37:49+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000364s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000454s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000546s ]
+NOTIC: [8] Undefined index: email C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 198 行.
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0092s ]
+SQL: SELECT * FROM `customer` WHERE ( email='' )  [ RunTime:0.0120s ]
+ERR: 1364:Field 'firstname' doesn't have a default value
+ [ SQL语句 ] : INSERT INTO `customer` () VALUES ()
+ERR: 1364:Field 'firstname' doesn't have a default value
+ [ SQL语句 ] : INSERT INTO `customer` () VALUES ()
+
+[ 2018-08-28T13:38:58+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000367s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000458s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000551s ]
+NOTIC: [8] Undefined index: email C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 198 行.
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `customer` WHERE ( email='' )  [ RunTime:0.0003s ]
+
+[ 2018-08-28T13:41:27+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000370s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000497s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000594s ]
+NOTIC: [8] Undefined index: email C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 198 行.
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `customer` WHERE ( email='' )  [ RunTime:0.0003s ]
+
+[ 2018-08-28T13:42:08+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000368s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000455s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000550s ]
+NOTIC: [8] Undefined index: email C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 198 行.
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `customer` WHERE ( email='' ) LIMIT 1   [ RunTime:0.0003s ]
+
+[ 2018-08-28T13:42:50+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000387s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000368s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000459s ]
+NOTIC: [8] Undefined index: email C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 198 行.
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `customer` WHERE ( email='' ) LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: email C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 200 行.
+
+[ 2018-08-28T13:43:43+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000340s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000372s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000466s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `customer` WHERE ( email='zxh@zz.com' ) LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: email C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 200 行.
+
+[ 2018-08-28T13:43:48+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000428s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000454s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000547s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `customer` WHERE ( email='zxh@zz.com' ) LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: email C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 200 行.
+
+[ 2018-08-28T13:44:43+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000368s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000445s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000538s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `customer` WHERE ( email='zxh@zz.com' ) LIMIT 1   [ RunTime:0.0003s ]
+
+[ 2018-08-28T13:45:44+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000327s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000357s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000449s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `customer` WHERE ( email='zxh@zz.com' ) LIMIT 1   [ RunTime:0.0003s ]
+
+[ 2018-08-28T13:46:04+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000376s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000509s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000606s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `customer` WHERE ( email='zxh@zz.com' ) LIMIT 1   [ RunTime:0.0003s ]
+ERR: 1062:Duplicate entry '' for key 'PRIMARY'
+ [ SQL语句 ] : INSERT INTO `customer` () VALUES ()
+ERR: 1062:Duplicate entry '' for key 'PRIMARY'
+ [ SQL语句 ] : INSERT INTO `customer` () VALUES ()
+
+[ 2018-08-28T13:47:20+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000336s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000358s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000450s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0169s ]
+SQL: SELECT * FROM `customer` WHERE ( email='zxh@zz.com' ) LIMIT 1   [ RunTime:0.0003s ]
+ERR: 1062:Duplicate entry '' for key 'PRIMARY'
+ [ SQL语句 ] : INSERT INTO `customer` (`firstname`,`lastname`,`passwd`,`phone`,`email`,`home_address`,`post_address`,`birthday`,`school`,`balance`) VALUES ('小红','张','npt123456','13813838438','zxh@zz.com','123Road','345Road','1998-12-12','上海大学','0')
+ERR: 1062:Duplicate entry '' for key 'PRIMARY'
+ [ SQL语句 ] : INSERT INTO `customer` (`firstname`,`lastname`,`passwd`,`phone`,`email`,`home_address`,`post_address`,`birthday`,`school`,`balance`) VALUES ('小红','张','npt123456','13813838438','zxh@zz.com','123Road','345Road','1998-12-12','上海大学','0')
+
+[ 2018-08-28T13:49:36+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000375s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000458s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000552s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0090s ]
+SQL: SELECT * FROM `customer` WHERE ( email='zxh@zz.com' ) LIMIT 1   [ RunTime:0.0121s ]
+SQL: INSERT INTO `customer` (`firstname`,`lastname`,`passwd`,`phone`,`email`,`home_address`,`post_address`,`birthday`,`school`,`balance`) VALUES ('小红','张','npt123456','13813838438','zxh@zz.com','123Road','345Road','1998-12-12','上海大学','0') [ RunTime:0.0108s ]
+
+[ 2018-08-28T13:56:43+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000386s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000448s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000542s ]
+
+[ 2018-08-28T13:57:05+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000426s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000480s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000579s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0125s ]
+SQL: SELECT * FROM `customer` WHERE ( email='zxh@zz.com' )  [ RunTime:0.1317s ]
+
+[ 2018-08-28T13:58:15+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000521s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000542s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000691s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0086s ]
+SQL: SELECT * FROM `customer` WHERE ( email='zxh1@zz.com' )  [ RunTime:0.0088s ]
+SQL: INSERT INTO `customer` (`firstname`,`lastname`,`passwd`,`phone`,`email`,`home_address`,`post_address`,`birthday`,`school`,`balance`) VALUES ('小红','张','npt123456','13813838438','zxh1@zz.com','123Road','345Road','1998-12-12','上海大学','0') [ RunTime:0.0122s ]
+SQL: SELECT * FROM `customer` WHERE ( email='zxh1@zz.com' )  [ RunTime:0.0091s ]
+NOTIC: [8] Undefined index: id C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 213 行.
+
+[ 2018-08-28T13:59:09+08:00 ] ::1 /home_stay/Customer/Customer/register
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000361s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000461s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000556s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0126s ]
+SQL: SELECT * FROM `customer` WHERE ( email='zxh2@zz.com' )  [ RunTime:0.0101s ]
+SQL: INSERT INTO `customer` (`firstname`,`lastname`,`passwd`,`phone`,`email`,`home_address`,`post_address`,`birthday`,`school`,`balance`) VALUES ('小红','张','npt123456','13813838438','zxh2@zz.com','123Road','345Road','1998-12-12','上海大学','0') [ RunTime:0.0146s ]
+SQL: SELECT * FROM `customer` WHERE ( email='zxh2@zz.com' )  [ RunTime:0.0098s ]
+NOTIC: [8] Undefined index: id C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 213 行.
+
+[ 2018-08-28T14:09:58+08:00 ] ::1 /home_stay/Customer/Customer/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000367s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000455s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000579s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0101s ]
+SQL: SELECT * FROM `customer` WHERE ( id='15120007' ) LIMIT 1   [ RunTime:0.0100s ]
+NOTIC: [8] Undefined variable: Token C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 52 行.
+
+[ 2018-08-28T14:10:37+08:00 ] ::1 /home_stay/Customer/Customer/detail
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000367s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000700s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000921s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0148s ]
+SQL: SELECT * FROM `customer` WHERE ( id='15120007' ) LIMIT 1   [ RunTime:0.0126s ]
+
+[ 2018-08-28T14:12:33+08:00 ] ::1 /home_stay/Customer/Customer/logout
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000333s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000363s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000456s ]
+

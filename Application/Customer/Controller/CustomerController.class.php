@@ -12,7 +12,7 @@ class CustomerController extends Controller{
 //  }
 //用户登陆
 
-    public function Login(){
+public function Login(){
         // 从输入流获取原始post数据，原始数据是一串json字符串
         $post_str = file_get_contents('php://input');
         //  通过json_decode方法将json字符串转化为PHP的array对象
@@ -97,7 +97,7 @@ class CustomerController extends Controller{
      }
 
 //获取个人信息CustomerDetail
-    public function Detail(){
+public function Detail(){
       // 同login，获取post请求中的json数据并解码
       $post_str = file_get_contents('php://input');
       $post = json_decode($post_str,true);
@@ -145,10 +145,81 @@ class CustomerController extends Controller{
         exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
       }
     }
-//
 
+//修改个人信息
+public function Update(){
+  $post_str = file_get_contents('php://input');
+  $post = json_decode($post_str,true);
+  $ctime = date("Y-m-d H:i",time());
+  $memberId = $post['memberId'];
+  // 注，大多数操作都需要用户登陆后的token
+  $token = $post['token'];
+  $t1 = session("token".$memberId);
+  //  如果token不存在，未登陆，返回错误
+  //exit(json_encode($t1,JSON_UNESCAPED_UNICODE));
+  if(!$t1){
+    $arr = array(
+                  "status" => 20000,
+                  "message" => "用户未登录或用户名错误！",
+                  "timestamp" => $ctime,
+                  "detail" =>array(),
+                );
+     exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+        }
+  // 如果用户的token与session中的token不匹配，则登录信息无效，返回错误
+ if($t1 != $token){
+      $arr = array(
+                   "status" => 10000,
+                   "message" => "登录信息不匹配，无权修改！",
+                   "timestamp" => $ctime,
+                   "detail" =>array(),
+                 );
+       exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+
+                }
+  //如果token匹配，则用户身份确认，继续操作
+  else{
+    M("Customer") ->where("id='$memberId'")->save($post['detail']);
+    $arr = array(
+                  "status" => 0,
+                  "message" => "修改成功！",
+                  "timestamp" => $ctime,
+                  "detail" =>array(),
+                );
+     exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+    }
+}
+
+//用户注册
+public function Register(){
+  $post_str = file_get_contents('php://input');
+  $post = json_decode($post_str,true);
+  $ctime = date("Y-m-d H:i",time());
+  $email = $post['detail']['email'];
+  $find_email = M('Customer') -> where("email='$email'")->select();
+  //exit(json_encode( $find_email,JSON_UNESCAPED_UNICODE));
+  if($find_email){
+    $arr = array(
+                  "status" => 1000,
+                  "message" => "用户已存在！",
+                  "timestamp" => $ctime,
+                  "detail" =>array(),
+                );
+     exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+                }
+  else{
+    M('Customer') -> add($post['detail']);
+    $arr = array(
+                  "status" => 0,
+                  "message" => "注册成功！",
+                  "timestamp" => $ctime,
+                  "detail" =>array()
+                );
+     exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
+}
 //用户登出
-    public function Logout(){
+public function Logout(){
       $post_str = file_get_contents('php://input');
       $post = json_decode($post_str,true);
       $ctime = date("Y-m-d H:i",time());
