@@ -328,3 +328,60 @@ INFO: [ app_begin ] --START--
 INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000682s ]
 INFO: [ app_begin ] --END-- [ RunTime:0.000811s ]
 
+[ 2018-08-28T10:28:01+08:00 ] ::1 /home_stay/Customer/Customer/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000605s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000776s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000936s ]
+
+[ 2018-08-28T10:31:13+08:00 ] ::1 /home_stay/Customer/Customer/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000513s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000635s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000768s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0091s ]
+SQL: SELECT * FROM `customer` WHERE ( id='15120001' ) LIMIT 1   [ RunTime:0.0106s ]
+NOTIC: [8] Undefined variable: Token C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 52 行.
+
+[ 2018-08-28T10:32:04+08:00 ] ::1 /home_stay/Customer/Customer/logout
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000583s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000731s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000882s ]
+
+[ 2018-08-28T10:37:40+08:00 ] ::1 /home_stay/Customer/Customer/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000544s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000642s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000776s ]
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0184s ]
+SQL: SELECT * FROM `customer` WHERE ( id='15120001' ) LIMIT 1   [ RunTime:0.0112s ]
+NOTIC: [8] Undefined variable: Token C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 52 行.
+
+[ 2018-08-28T10:38:22+08:00 ] ::1 /home_stay/Customer/Customer/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000046s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000872s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001107s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001335s ]
+NOTIC: [8] Undefined index: memberPasswd C:\wamp64\www\home_stay\Application\Customer\Controller\CustomerController.class.php 第 22 行.
+SQL: SHOW COLUMNS FROM `customer` [ RunTime:0.0089s ]
+SQL: SELECT * FROM `customer` WHERE ( id='15120001' ) LIMIT 1   [ RunTime:0.1309s ]
+
+[ 2018-08-28T10:38:34+08:00 ] ::1 /home_stay/Customer/Customer/logout
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000620s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000682s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000859s ]
+
