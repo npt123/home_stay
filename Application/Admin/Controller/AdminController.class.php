@@ -11,6 +11,9 @@ public function Login(){
         $post = json_decode($post_str,true);
         //  从post数中取出memberId和memberPasswd
         $memberId = $post['memberId'];
+        // session(null);
+        // exit(json_encode(session(),JSON_UNESCAPED_UNICODE));
+
         $memberPwd = $post['memberPasswd'];
         //key用于判断是否在session中已经存在用户信息
         $key = session("token".$memberId);
@@ -124,7 +127,8 @@ public function Logout(){
       }
       //如果token匹配，则用户身份确认，继续操作
       else{
-        session_unset("token".$memberId);
+        // session_unset("token".$memberId);
+        session("token".$memberId,null);
         $arr = array(
             "status" => 0,
             "message" => "退出登录！",
