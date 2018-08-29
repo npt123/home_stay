@@ -2,7 +2,7 @@
 namespace House\Controller;
 use Think\Controller;
 
-class AdminHouseController extends Controller
+class HouseController extends Controller
 {
   public function CreateHouse()
   {
@@ -79,7 +79,7 @@ class AdminHouseController extends Controller
     $t1 = session("token".$memberId);
     //  如果token不存在，未登陆，返回错误
 
-    if(!(M('admin')->where("id = '%s'",$memberId)->find()))
+    if($memberId != "0001")
     {
       $arr = array(
         "status" => 30000,
@@ -186,6 +186,21 @@ class AdminHouseController extends Controller
       );
       exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
     }
+  }
+  public function WatchHouse()
+  {
+    $ctime = date("Y-m-d H:i",time());
+    // 查看房源
+    // M("house") -> select();
+    // 封装返回的数据格式，注意以这个格式为统一格式，若有返回的数据全部封装在detail中
+    $arr = array(
+      "status" => 0,
+      "message" => "房源信息",
+      "timestamp" => $ctime,
+      "detail" => array(M("house") -> select())
+    );
+    exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+
   }
 }
 ?>
