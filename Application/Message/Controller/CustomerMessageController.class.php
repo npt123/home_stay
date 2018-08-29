@@ -17,6 +17,18 @@ class CustomerMessageController extends Controller
     //  如果token相同则代表登录状态正常
     $t1 = session("token".$memberId);
     //  如果token不存在，未登陆，返回错误
+
+    if(!(M('customer')->where("id = '%s'",$memberId)->find()))
+    {
+      $arr = array(
+        "status" => 30000,
+        "message" => "用户权限不匹配！",
+        "timestamp" => $ctime,
+        "detail" => array(),
+      );
+       exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+    }
+
     if(!$t1)
     {
       $arr = array(
