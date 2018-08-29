@@ -68,11 +68,7 @@ public function Login(){
               "status" =>111,
               "message" => "密码错误！",
               "timestamp" => $ctime,
-              "detail" =>array(
-                "memberId"=>$memberId,
-                "memberPwd"=>$memberPwd,
-                "passwd"=>$password
-              )
+              "detail" =>array()
             );
             exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
           }
