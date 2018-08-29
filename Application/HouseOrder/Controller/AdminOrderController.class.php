@@ -4,7 +4,7 @@ use Think\Controller;
 
 class AdminOrderController extends Controller{
 
-public function DeleteOrder(){}
+public function DeleteOrder(){}//删除订单
 public function CheckOrder(){
   $post_str = file_get_contents('php://input');
   $post = json_decode($post_str,true);
@@ -57,9 +57,10 @@ public function CheckOrder(){
 
             }
 
-}
-public function UpdateOrder(){}
-public function EvaOrder(){}
+}//查询订单
+public function AcceptOrder(){}//接受订单
+public function RefuseOrder(){}//拒绝订单
+public function ConfirmOrder(){}//确认订单
 
 
 }
