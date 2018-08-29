@@ -10,12 +10,12 @@ public function Login(){
         //  通过json_decode方法将json字符串转化为PHP的array对象
         $post = json_decode($post_str,true);
         //  从post数中取出memberId和memberPasswd
-        $adminId = $post['adminId'];
-        $adminPwd = $post['adminPasswd'];
+        $memberId = $post['memberId'];
+        $memberPwd = $post['memberPasswd'];
         //key用于判断是否在session中已经存在用户信息
-        $key = session("token".$adminId);
+        $key = session("token".$memberId);
         //  用M方法从customer中以memberId为限定进行检索
-        $find_password = M('Admin') ->where("id='$adminId'")->find();
+        $find_password = M('Admin') ->where("id='$memberId'")->find();
         //  从数据库的查询结果中急password字段进行比对
         $password = $find_password['passwd'];
         //  获取时间戳，用来封装到返回的信息中
@@ -35,9 +35,9 @@ public function Login(){
         else if($find_password){
           //  第二层判定逻辑
           //  将从post中取得的memberPwd和数据库的查询结果进行比对
-          if($adminPwd == $password){
+          if($memberPwd == $password){
             //  这是一段加密算法，用来加密生成token
-            $str = $adminId.$adminPwd;
+            $str = $memberId.$memberPwd;
             $len = strlen($str)-1;
             for($i=0;$i<20;$i++){
               $num = mt_rand(0,$len);
@@ -47,7 +47,7 @@ public function Login(){
             // 将token存入session中，用以判断登陆状态
             // 注意 session的key不能为纯数字，所以将key设为"token".$memberId,取session时
             //  需要注意
-             session("token".$adminId,$Token);
+             session("token".$memberId,$Token);
 
              // 封装返回的数据格式，注意以这个格式为统一格式，若有返回的数据全部封装在detail中
               $arr1 = array(
@@ -69,8 +69,8 @@ public function Login(){
               "message" => "密码错误！",
               "timestamp" => $ctime,
               "detail" =>array(
-                "adminid"=>$adminId,
-                "adminpwd"=>$adminPwd,
+                "memberId"=>$memberId,
+                "memberPwd"=>$memberPwd,
                 "passwd"=>$password
               )
             );
@@ -97,10 +97,10 @@ public function Logout(){
       $post_str = file_get_contents('php://input');
       $post = json_decode($post_str,true);
       $ctime = date("Y-m-d H:i",time());
-      $adminId = $post['adminId'];
+      $memberId = $post['memberId'];
       // 注，大多数操作都需要用户登陆后的token
       $token = $post['token'];
-      $t1 = session("token".$adminId);
+      $t1 = session("token".$memberId);
       //  如果token不存在，未登陆，返回错误
       //exit(json_encode($t1,JSON_UNESCAPED_UNICODE));
       if(!$t1){
@@ -128,7 +128,7 @@ public function Logout(){
       }
       //如果token匹配，则用户身份确认，继续操作
       else{
-        session_unset("token".$adminId);
+        session_unset("token".$memberId);
         $arr = array(
             "status" => 0,
             "message" => "退出登录！",
@@ -148,12 +148,12 @@ public function Detail(){
       $post_str = file_get_contents('php://input');
       $post = json_decode($post_str,true);
       $ctime = date("Y-m-d H:i",time());
-      $adminId = $post['adminId'];
+      $memberId = $post['memberId'];
       // 注，大多数操作都需要用户登陆后的token
       $token = $post['token'];
       //  根据用户的memberId找到session中的token，并与用户的token进行比对
       //  如果token相同则代表登录状态正常
-      $t1 = session("token".$adminId);
+      $t1 = session("token".$memberId);
 
       //  如果token不存在，未登陆，返回错误
       if(!$t1){
@@ -179,7 +179,7 @@ public function Detail(){
       //如果token匹配，则用户身份确认，继续操作
       else{
         //从customer表中取出用户的基本信息进行封装，并且返回
-        $find_detail = M('Admin') ->where("id='$adminId'")->find();
+        $find_detail = M('Admin') ->where("id='$memberId'")->find();
         $arr = array(
             "status" => 0,
             "message" => "管理员信息！",
@@ -197,12 +197,12 @@ public function Newadmin(){
       $post_str = file_get_contents('php://input');
       $post = json_decode($post_str,true);
       $ctime = date("Y-m-d H:i",time());
-      $adminId = $post['adminId'];
+      $memberId = $post['memberId'];
       // 注，大多数操作都需要用户登陆后的token
       $token = $post['token'];
       //  根据用户的memberId找到session中的token，并与用户的token进行比对
       //  如果token相同则代表登录状态正常
-      $t1 = session("token".$adminId);
+      $t1 = session("token".$memberId);
 
       //  如果token不存在，未登陆，返回错误
       if(!$t1){
@@ -228,7 +228,7 @@ public function Newadmin(){
       //如果token匹配，则用户身份确认，继续操作
       else{
         //从customer表中取出用户的基本信息进行封装，并且返回
-        $find_privilege = M('Admin') ->where("id='$adminId'")->find();
+        $find_privilege = M('Admin') ->where("id='$memberId'")->find();
         $privilege = $find_privilege['privilege'];
         if ($privilege == 3){
           M('Admin') -> add($post['detail']);
@@ -260,12 +260,12 @@ public function Deletemember(){
       $post_str = file_get_contents('php://input');
       $post = json_decode($post_str,true);
       $ctime = date("Y-m-d H:i",time());
-      $adminId = $post['adminId'];
+      $memberId = $post['memberId'];
       // 注，大多数操作都需要用户登陆后的token
       $token = $post['token'];
       //  根据用户的memberId找到session中的token，并与用户的token进行比对
       //  如果token相同则代表登录状态正常
-      $t1 = session("token".$adminId);
+      $t1 = session("token".$memberId);
 
       //  如果token不存在，未登陆，返回错误
       if(!$t1){
@@ -291,7 +291,7 @@ public function Deletemember(){
       //如果token匹配，则用户身份确认，继续操作
       else{
         //从customer表中取出用户的基本信息进行封装，并且返回
-        $find_privilege = M('Admin') ->where("id='$adminId'")->find();
+        $find_privilege = M('Admin') ->where("id='$memberId'")->find();
         $privilege = $find_privilege['privilege'];
         if ($privilege == 3){
           //删除用户具体操作
@@ -337,12 +337,12 @@ public function Deleteadmin(){
       $post_str = file_get_contents('php://input');
       $post = json_decode($post_str,true);
       $ctime = date("Y-m-d H:i",time());
-      $adminId = $post['adminId'];
+      $memberId = $post['memberId'];
       // 注，大多数操作都需要用户登陆后的token
       $token = $post['token'];
       //  根据用户的memberId找到session中的token，并与用户的token进行比对
       //  如果token相同则代表登录状态正常
-      $t1 = session("token".$adminId);
+      $t1 = session("token".$memberId);
 
       //  如果token不存在，未登陆，返回错误
       if(!$t1){
@@ -368,20 +368,20 @@ public function Deleteadmin(){
       //如果token匹配，则用户身份确认，继续操作
       else{
         //从customer表中取出用户的基本信息进行封装，并且返回
-        $find_privilege = M('Admin') ->where("id='$adminId'")->find();
+        $find_privilege = M('Admin') ->where("id='$memberId'")->find();
         $privilege = $find_privilege['privilege'];
         if ($privilege == 3){
           //删除用户具体操作
-          $deleteadminId = $post['deleteadminId'];
-          $find_adminId = M('Admin') -> where("id='$deleteadminId'")->find();
-          if ($find_adminId){
-            M("Admin") ->where("id='$deleteadminId'")->delete();
+          $deletememberId = $post['deletememberId'];
+          $find_memberId = M('Admin') -> where("id='$deletememberId'")->find();
+          if ($find_memberId){
+            M("Admin") ->where("id='$deletememberId'")->delete();
             $arr = array(
                           "status" => 0,
                           "message" => "删除成功！",
                           "timestamp" => $ctime,
                           "detail" =>array(
-                            "deleteadminId" => $deleteadminId
+                            "deletememberId" => $deletememberId
                           )
                         );
             exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
@@ -392,7 +392,7 @@ public function Deleteadmin(){
                           "message" => "所要删除管理员不存在！",
                           "timestamp" => $ctime,
                           "detail" =>array(
-                            "deleteadminId" => $deleteadminId
+                            "deletememberId" => $deletememberId
                           )
                         );
             exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
