@@ -296,14 +296,26 @@ public function Deletemember(){
         if ($privilege == 3){
           //删除用户具体操作
           $memberId = $post['memberId'];
-          M("Customer") ->where("id='$memberId'")->delete();
-          $arr = array(
-                        "status" => 0,
-                        "message" => "删除成功！",
-                        "timestamp" => $ctime,
-                        "detail" =>array()
-                      );
-          exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+          $find_memberId = M('Customer') -> where("id='$memberId'")->find();
+          if ($find_memberId){
+            M("Customer") ->where("id='$memberId'")->delete();
+            $arr = array(
+                          "status" => 0,
+                          "message" => "删除成功！",
+                          "timestamp" => $ctime,
+                          "detail" =>array()
+                        );
+            exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+          }
+          else{
+            $arr = array(
+                          "status" => 1000,
+                          "message" => "所要删除用户不存在！",
+                          "timestamp" => $ctime,
+                          "detail" =>array()
+                        );
+            exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+          }
         }
         else{
           $arr = array(
@@ -360,14 +372,31 @@ public function Deleteadmin(){
         $privilege = $find_privilege['privilege'];
         if ($privilege == 3){
           //删除用户具体操作
-          M("Admin") ->where("id='$adminId'")->delete();
-          $arr = array(
-                        "status" => 0,
-                        "message" => "删除成功！",
-                        "timestamp" => $ctime,
-                        "detail" =>array()
-                      );
-          exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+          $deleteadminId = $post['deleteadminId'];
+          $find_adminId = M('Admin') -> where("id='$deleteadminId'")->find();
+          if ($find_adminId){
+            M("Admin") ->where("id='$deleteadminId'")->delete();
+            $arr = array(
+                          "status" => 0,
+                          "message" => "删除成功！",
+                          "timestamp" => $ctime,
+                          "detail" =>array(
+                            "deleteadminId" => $deleteadminId
+                          )
+                        );
+            exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+          }
+          else{
+            $arr = array(
+                          "status" => 1000,
+                          "message" => "所要删除管理员不存在！",
+                          "timestamp" => $ctime,
+                          "detail" =>array(
+                            "deleteadminId" => $deleteadminId
+                          )
+                        );
+            exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+          }
         }
         else{
           $arr = array(
