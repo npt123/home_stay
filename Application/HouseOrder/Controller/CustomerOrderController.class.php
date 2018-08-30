@@ -268,17 +268,27 @@ public function UpdateOrder(){
   }
   //如果token匹配，则用户身份确认，继续操作
   else{
-
-      M('house_order') -> where("id='$orderId'")->save($post['detail']);
-
-      $arr = array(
-                    "status" => 0,
-                    "message" => "订单修改成功！",
-                    "timestamp" => $ctime,
-                    "detail" =>array()
-                  );
-       exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
-        }
+    $find_order = M('house_order') ->where("id='$orderId'")->find();
+    if($find_order['status']=="created" || $find_order['status']=="accepted"){
+                                          M('house_order') -> where("id='$orderId'")->save($post['detail']);
+                                          $arr = array(
+                                                        "status" => 0,
+                                                        "message" => "订单修改成功！",
+                                                        "timestamp" => $ctime,
+                                                        "detail" =>array()
+                                                      );
+                                           exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+                                       }
+    else{
+           $arr = array(
+                         "status" => 111,
+                         "message" => "订单不能修改！",
+                         "timestamp" => $ctime,
+                         "detail" =>array()
+                       );
+            exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
+    }
 }
 public function EvaOrder(){
   $post_str = file_get_contents('php://input');
@@ -404,7 +414,7 @@ public function PayOrder(){
                         exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
 
                    }
-  else if($find_order['status'] == 'accept'){
+  else if($find_order['status'] == 'accepted'){
         $data['status']='paid';
         $condition['id'] = $post['orderId'];
         M('house_order') -> where($condition)->save($data);
