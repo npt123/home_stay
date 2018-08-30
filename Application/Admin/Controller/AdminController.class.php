@@ -1,7 +1,14 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
+// 指定允许其他域名访问
+header('Access-Control-Allow-Origin:http://localhost:8080');
+// 响应类型
+header('Access-Control-Allow-Methods:PUT,POST,GET,DELETE');
+// 响应头设置
+header('Access-Control-Allow-Headers:x-requested-with,content-type');
 
+header('Access-Control-Allow-Credentials: true');
 class AdminController extends Controller{
 //管理员登陆
 public function Login(){
@@ -112,7 +119,17 @@ public function Logout(){
          exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
       }
       // 如果用户的token与session中的token不匹配，则登录信息无效，返回错误
-     if($t1 != $token){
+      if(!(M('admin')->where("id = '%s'",$memberId)->find()))
+      {
+        $arr = array(
+          "status" => 30000,
+          "message" => "用户权限不匹配！",
+          "timestamp" => $ctime,
+          "detail" => array(),
+        );
+         exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
+     else if($t1 != $token){
           $arr = array(
             "status" => 10000,
             "message" => "登录信息不匹配！",
@@ -154,9 +171,18 @@ public function Detail(){
       //  根据用户的memberId找到session中的token，并与用户的token进行比对
       //  如果token相同则代表登录状态正常
       $t1 = session("token".$memberId);
-
       //  如果token不存在，未登陆，返回错误
-      if(!$t1){
+      if(!(M('admin')->where("id = '%s'",$memberId)->find()))
+      {
+        $arr = array(
+          "status" => 30000,
+          "message" => "用户权限不匹配！",
+          "timestamp" => $ctime,
+          "detail" => array(),
+        );
+         exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
+      else if(!$t1){
         $arr = array(
           "status" => 20000,
           "message" => "商家未登录或商家用户名错误！",
@@ -203,9 +229,18 @@ public function Newadmin(){
       //  根据用户的memberId找到session中的token，并与用户的token进行比对
       //  如果token相同则代表登录状态正常
       $t1 = session("token".$memberId);
-
       //  如果token不存在，未登陆，返回错误
-      if(!$t1){
+      if(!(M('admin')->where("id = '%s'",$memberId)->find()))
+      {
+        $arr = array(
+          "status" => 30000,
+          "message" => "用户权限不匹配！",
+          "timestamp" => $ctime,
+          "detail" => array(),
+        );
+         exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
+      else if(!$t1){
         $arr = array(
           "status" => 20000,
           "message" => "商家未登录或商家用户名错误！",
@@ -266,9 +301,18 @@ public function Deletemember(){
       //  根据用户的memberId找到session中的token，并与用户的token进行比对
       //  如果token相同则代表登录状态正常
       $t1 = session("token".$memberId);
-
       //  如果token不存在，未登陆，返回错误
-      if(!$t1){
+      if(!(M('admin')->where("id = '%s'",$memberId)->find()))
+      {
+        $arr = array(
+          "status" => 30000,
+          "message" => "用户权限不匹配！",
+          "timestamp" => $ctime,
+          "detail" => array(),
+        );
+         exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
+      else if(!$t1){
         $arr = array(
           "status" => 20000,
           "message" => "商家未登录或商家用户名错误！",
@@ -343,9 +387,18 @@ public function Deleteadmin(){
       //  根据用户的memberId找到session中的token，并与用户的token进行比对
       //  如果token相同则代表登录状态正常
       $t1 = session("token".$memberId);
-
       //  如果token不存在，未登陆，返回错误
-      if(!$t1){
+      if(!(M('admin')->where("id = '%s'",$memberId)->find()))
+      {
+        $arr = array(
+          "status" => 30000,
+          "message" => "用户权限不匹配！",
+          "timestamp" => $ctime,
+          "detail" => array(),
+        );
+         exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
+      else if(!$t1){
         $arr = array(
           "status" => 20000,
           "message" => "商家未登录或商家用户名错误！",

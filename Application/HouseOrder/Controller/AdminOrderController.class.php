@@ -1,7 +1,14 @@
 <?php
 namespace HouseOrder\Controller;
 use Think\Controller;
+// 指定允许其他域名访问
+header('Access-Control-Allow-Origin:http://localhost:8080');
+// 响应类型
+header('Access-Control-Allow-Methods:PUT,POST,GET,DELETE');
+// 响应头设置
+header('Access-Control-Allow-Headers:x-requested-with,content-type');
 
+header('Access-Control-Allow-Credentials: true');
 class AdminOrderController extends Controller{
 
 //删除订单
@@ -15,7 +22,17 @@ public function DeleteOrder(){
   $t1 = session("token".$memberId);
   //  如果token不存在，未登陆，返回错误
   //exit(json_encode($t1,JSON_UNESCAPED_UNICODE));
-  if(!$t1){
+  if(!(M('admin')->where("id = '%s'",$memberId)->find()))
+  {
+    $arr = array(
+      "status" => 30000,
+      "message" => "用户权限不匹配！",
+      "timestamp" => $ctime,
+      "detail" => array(),
+    );
+     exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+  }
+  else if(!$t1){
     $arr = array(
       "status" => 20000,
       "message" => "商家未登录或商家用户名错误！",
@@ -75,9 +92,18 @@ public function CheckOrder(){
   //  根据用户的memberId找到session中的token，并与用户的token进行比对
   //  如果token相同则代表登录状态正常
   $t1 = session("token".$memberId);
-
   //  如果token不存在，未登陆，返回错误
-  if(!$t1){
+  if(!(M('admin')->where("id = '%s'",$memberId)->find()))
+  {
+    $arr = array(
+      "status" => 30000,
+      "message" => "用户权限不匹配！",
+      "timestamp" => $ctime,
+      "detail" => array(),
+    );
+     exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+  }
+  else if(!$t1){
     $arr = array(
       "status" => 20000,
       "message" => "商家未登录或商家用户名错误！",
@@ -130,7 +156,17 @@ public function AcceptOrder(){
   $t1 = session("token".$memberId);
   //  如果token不存在，未登陆，返回错误
   //exit(json_encode($t1,JSON_UNESCAPED_UNICODE));
-  if(!$t1){
+  if(!(M('admin')->where("id = '%s'",$memberId)->find()))
+  {
+    $arr = array(
+      "status" => 30000,
+      "message" => "用户权限不匹配！",
+      "timestamp" => $ctime,
+      "detail" => array(),
+    );
+     exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+  }
+  else if(!$t1){
     $arr = array(
       "status" => 20000,
       "message" => "商家未登录或商家用户名错误！",
@@ -191,7 +227,17 @@ public function RefuseOrder(){
   $t1 = session("token".$memberId);
   //  如果token不存在，未登陆，返回错误
   //exit(json_encode($t1,JSON_UNESCAPED_UNICODE));
-  if(!$t1){
+  if(!(M('admin')->where("id = '%s'",$memberId)->find()))
+  {
+    $arr = array(
+      "status" => 30000,
+      "message" => "用户权限不匹配！",
+      "timestamp" => $ctime,
+      "detail" => array(),
+    );
+     exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+  }
+  else if(!$t1){
     $arr = array(
       "status" => 20000,
       "message" => "商家未登录或商家用户名错误！",
@@ -252,7 +298,17 @@ public function ConfirmOrder(){
   $t1 = session("token".$memberId);
   //  如果token不存在，未登陆，返回错误
   //exit(json_encode($t1,JSON_UNESCAPED_UNICODE));
-  if(!$t1){
+  if(!(M('admin')->where("id = '%s'",$memberId)->find()))
+  {
+    $arr = array(
+      "status" => 30000,
+      "message" => "用户权限不匹配！",
+      "timestamp" => $ctime,
+      "detail" => array(),
+    );
+     exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+  }
+  else if(!$t1){
     $arr = array(
       "status" => 20000,
       "message" => "商家未登录或商家用户名错误！",

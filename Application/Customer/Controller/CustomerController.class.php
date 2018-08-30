@@ -48,8 +48,6 @@ public function Login(){
           $memberId = $post['memberId'];
         }
 
-
-
         //key用于判断是否在session中已经存在用户信息
         $key = session("token".$memberId);
         //  用M方法从customer中以memberId为限定进行检索
@@ -138,7 +136,16 @@ public function Detail(){
       //  根据用户的memberId找到session中的token，并与用户的token进行比对
       //  如果token相同则代表登录状态正常
       $t1 = session("token".$memberId);
-
+      if(!(M('customer')->where("id = '%s'",$memberId)->find()))
+      {
+        $arr = array(
+          "status" => 30000,
+          "message" => "用户权限不匹配！",
+          "timestamp" => $ctime,
+          "detail" => array(),
+        );
+         exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
       //  如果token不存在，未登陆，返回错误
       if(!$t1){
         $arr = array(
@@ -185,6 +192,16 @@ public function Update(){
   $t1 = session("token".$memberId);
   //  如果token不存在，未登陆，返回错误
   //exit(json_encode($t1,JSON_UNESCAPED_UNICODE));
+  if(!(M('customer')->where("id = '%s'",$memberId)->find()))
+  {
+    $arr = array(
+      "status" => 30000,
+      "message" => "用户权限不匹配！",
+      "timestamp" => $ctime,
+      "detail" => array(),
+    );
+     exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+  }
   if(!$t1){
     $arr = array(
                   "status" => 20000,
@@ -264,7 +281,17 @@ public function Logout(){
       $t1 = session("token".$memberId);
       //  如果token不存在，未登陆，返回错误
       //exit(json_encode($t1,JSON_UNESCAPED_UNICODE));
-      if(!$t1){
+      if(!(M('customer')->where("id = '%s'",$memberId)->find()))
+      {
+        $arr = array(
+          "status" => 30000,
+          "message" => "用户权限不匹配！",
+          "timestamp" => $ctime,
+          "detail" => array(),
+        );
+         exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
+      else if(!$t1){
         $arr = array(
           "status" => 20000,
           "message" => "用户未登录或用户名错误！",

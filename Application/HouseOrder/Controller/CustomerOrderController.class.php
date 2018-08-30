@@ -22,9 +22,18 @@ public function CreateOrder(){
   //  根据用户的memberId找到session中的token，并与用户的token进行比对
   //  如果token相同则代表登录状态正常
   $t1 = session("token".$memberId);
-
+  if(!(M('customer')->where("id = '%s'",$memberId)->find()))
+  {
+    $arr = array(
+      "status" => 30000,
+      "message" => "用户权限不匹配！",
+      "timestamp" => $ctime,
+      "detail" => array(),
+    );
+     exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+  }
   //  如果token不存在，未登陆，返回错误
-  if(!$t1){
+  else if(!$t1){
     $arr = array(
       "status" => 20000,
       "message" => "用户未登录或用户名错误！",
@@ -71,9 +80,18 @@ public function CancelOrder(){
   $orderId = $post['orderId'];
   $t1 = session("token".$memberId);
   //exit(json_encode("sss",JSON_UNESCAPED_UNICODE));
-
+  if(!(M('customer')->where("id = '%s'",$memberId)->find()))
+  {
+    $arr = array(
+      "status" => 30000,
+      "message" => "用户权限不匹配！",
+      "timestamp" => $ctime,
+      "detail" => array(),
+    );
+     exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+  }
    //如果token不存在，未登陆，返回错误
-  if(!$t1){
+  else if(!$t1){
     $arr = array(
       "status" => 20000,
       "message" => "用户未登录或用户名错误！",
@@ -130,7 +148,17 @@ public function CheckOrder(){
   $t1 = session("token".$memberId);
   $detail = $post['detail'];
   //  如果token不存在，未登陆，返回错误
-  if(!$t1){
+  if(!(M('customer')->where("id = '%s'",$memberId)->find()))
+  {
+    $arr = array(
+      "status" => 30000,
+      "message" => "用户权限不匹配！",
+      "timestamp" => $ctime,
+      "detail" => array(),
+    );
+     exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+  }
+  else if(!$t1){
     $arr = array(
       "status" => 20000,
       "message" => "用户未登录或用户名错误！",
@@ -170,6 +198,7 @@ public function CheckOrder(){
        //else{exit(json_encode($detail,JSON_UNESCAPED_UNICODE));}
        //有条件查询
   else{
+      if($detail['id'] != null){$condition['id']=$detail['id'];}
       if($detail['HouseId'] != null){$condition['HouseId']=$detail['HouseId'];}
       if($detail['status'] != null){$condition['status']=$detail['status'];}
       if($detail['Price'] != null){$condition['Price']=$detail['Price'];}
@@ -201,13 +230,23 @@ public function UpdateOrder(){
   $memberId = $post['memberId'];
   // 注，大多数操作都需要用户登陆后的token
   $token = $post['token'];
+  $orderId = $post['orderId'];
   //  根据用户的memberId找到session中的token，并与用户的token进行比对
   //  如果token相同则代表登录状态正常
   $t1 = session("token".$memberId);
   //exit(json_encode("sss",JSON_UNESCAPED_UNICODE));
-
    //如果token不存在，未登陆，返回错误
-  if(!$t1){
+   if(!(M('customer')->where("id = '%s'",$memberId)->find()))
+   {
+     $arr = array(
+       "status" => 30000,
+       "message" => "用户权限不匹配！",
+       "timestamp" => $ctime,
+       "detail" => array(),
+     );
+      exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+   }
+  else if(!$t1){
     $arr = array(
       "status" => 20000,
       "message" => "用户未登录或用户名错误！",
@@ -230,7 +269,7 @@ public function UpdateOrder(){
   //如果token匹配，则用户身份确认，继续操作
   else{
 
-      M('house_order') -> save($post['detail']);
+      M('house_order') -> where("id='$orderId'")->save($post['detail']);
 
       $arr = array(
                     "status" => 0,
@@ -253,9 +292,18 @@ public function EvaOrder(){
   $orderId = $post['orderId'];
   $t1 = session("token".$memberId);
   //exit(json_encode("sss",JSON_UNESCAPED_UNICODE));
-
    //如果token不存在，未登陆，返回错误
-  if(!$t1){
+   if(!(M('customer')->where("id = '%s'",$memberId)->find()))
+   {
+     $arr = array(
+       "status" => 30000,
+       "message" => "用户权限不匹配！",
+       "timestamp" => $ctime,
+       "detail" => array(),
+     );
+      exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+   }
+  else if(!$t1){
     $arr = array(
       "status" => 20000,
       "message" => "用户未登录或用户名错误！",
@@ -315,7 +363,17 @@ public function PayOrder(){
   $find_order = M('house_order') ->where("id='$orderId'")->find();
   //exit(json_encode("sss",JSON_UNESCAPED_UNICODE));
    //如果token不存在，未登陆，返回错误
-  if(!$t1){
+   if(!(M('customer')->where("id = '%s'",$memberId)->find()))
+   {
+     $arr = array(
+       "status" => 30000,
+       "message" => "用户权限不匹配！",
+       "timestamp" => $ctime,
+       "detail" => array(),
+     );
+      exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+   }
+  else if(!$t1){
     $arr = array(
       "status" => 20000,
       "message" => "用户未登录或用户名错误！",
@@ -355,7 +413,7 @@ public function PayOrder(){
                       "status" => 0,
                       "message" => "订单支付成功！",
                       "timestamp" => $ctime,
-                      "detail" => $find_order
+                      //"detail" => $find_order
                     );
          exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
   }
@@ -371,8 +429,6 @@ public function PayOrder(){
  }
 
 }
-
-
 
 
  ?>
