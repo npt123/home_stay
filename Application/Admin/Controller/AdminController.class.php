@@ -380,9 +380,7 @@ public function Deleteadmin(){
                           "status" => 0,
                           "message" => "删除成功！",
                           "timestamp" => $ctime,
-                          "detail" =>array(
-                            "deletememberId" => $deletememberId
-                          )
+                          "detail" =>array()
                         );
             exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
           }
@@ -391,9 +389,7 @@ public function Deleteadmin(){
                           "status" => 1000,
                           "message" => "所要删除管理员不存在！",
                           "timestamp" => $ctime,
-                          "detail" =>array(
-                            "deletememberId" => $deletememberId
-                          )
+                          "detail" =>array()
                         );
             exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
           }
