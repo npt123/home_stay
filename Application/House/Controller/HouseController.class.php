@@ -62,15 +62,28 @@ class HouseController extends Controller
     else
     {
       // 创建房源
-      M("house") -> add($post['detail']);
-      // 封装返回的数据格式，注意以这个格式为统一格式，若有返回的数据全部封装在detail中
-      $arr = array(
-        "status" => 0,
-        "message" => "创建成功",
-        "timestamp" => $ctime,
-        "detail" => array()
-      );
-      exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      if(M("house") -> where("id = '%s'",$post['id']) -> select())
+      {
+        $arr = array(
+          "status" => 40000,
+          "message" => "房源信息已存在",
+          "timestamp" => $ctime,
+          "detail" => array()
+        );
+        exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
+      else
+      {
+        M("house") -> add($post['detail']);
+        // 封装返回的数据格式，注意以这个格式为统一格式，若有返回的数据全部封装在detail中
+        $arr = array(
+          "status" => 0,
+          "message" => "创建成功",
+          "timestamp" => $ctime,
+          "detail" => array()
+        );
+        exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
     }
   }
   public function DeleteHouse()
@@ -123,15 +136,28 @@ class HouseController extends Controller
     else
     {
       // 删除房源
-      M("house") -> where("id = '%s'",$post['id']) -> delete();
-      // 封装返回的数据格式，注意以这个格式为统一格式，若有返回的数据全部封装在detail中
-      $arr = array(
-        "status" => 0,
-        "message" => "删除成功",
-        "timestamp" => $ctime,
-        "detail" => array()
-      );
-      exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      if(!M("house") -> where("id = '%s'",$post['id']) -> select())
+      {
+        $arr = array(
+          "status" => 40000,
+          "message" => "房源信息不存在",
+          "timestamp" => $ctime,
+          "detail" => array()
+        );
+        exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
+      else
+      {
+        M("house") -> where("id = '%s'",$post['id']) -> delete();
+        // 封装返回的数据格式，注意以这个格式为统一格式，若有返回的数据全部封装在detail中
+        $arr = array(
+          "status" => 0,
+          "message" => "删除成功",
+          "timestamp" => $ctime,
+          "detail" => array()
+        );
+        exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
     }
   }
   public function UpdateHouse()
@@ -184,15 +210,28 @@ class HouseController extends Controller
     else
     {
       // 用id更新房源
-      M("house") -> where("id = '%s'",$post['id']) -> save($post['detail']);
-      // 封装返回的数据格式，注意以这个格式为统一格式，若有返回的数据全部封装在detail中
-      $arr = array(
-        "status" => 0,
-        "message" => "更新成功",
-        "timestamp" => $ctime,
-        "detail" => array()
-      );
-      exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      if(!M("house") -> where("id = '%s'",$post['id']) -> select())
+      {
+        $arr = array(
+          "status" => 40000,
+          "message" => "房源信息不存在",
+          "timestamp" => $ctime,
+          "detail" => array()
+        );
+        exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
+      else
+      {
+        M("house") -> where("id = '%s'",$post['id']) -> save($post['detail']);
+        // 封装返回的数据格式，注意以这个格式为统一格式，若有返回的数据全部封装在detail中
+        $arr = array(
+          "status" => 0,
+          "message" => "更新成功",
+          "timestamp" => $ctime,
+          "detail" => array()
+        );
+        exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
     }
   }
   public function WatchHouse()
@@ -221,8 +260,8 @@ class HouseController extends Controller
   }
   public function DateHouse()
   {
-    // $ctime = date("Y-m-d H:i",time());
-    $ctime = "2018-09-26";
+    $ctime = date("Y-m-d H:i",time());
+    // $ctime = "2018-09-26";
 
     // 查看房态
     // 封装返回的数据格式，注意以这个格式为统一格式，若有返回的数据全部封装在detail中

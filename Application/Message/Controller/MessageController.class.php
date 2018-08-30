@@ -63,15 +63,28 @@ class MessageController extends Controller
     else
     {
       // 用id删除留言
-      M("message") -> where("id = '%s'",$post['detail']['id']) -> delete();
-      // 封装返回的数据格式，注意以这个格式为统一格式，若有返回的数据全部封装在detail中
-      $arr = array(
-        "status" => 0,
-        "message" => "删除成功",
-        "timestamp" => $ctime,
-        "detail"=>array()
-      );
-      exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      if(!M("message") -> where("id = '%s'",$post['id']) -> select())
+      {
+        $arr = array(
+          "status" => 40000,
+          "message" => "留言信息不存在",
+          "timestamp" => $ctime,
+          "detail" => array()
+        );
+        exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
+      else
+      {
+        M("message") -> where("id = '%s'",$post['detail']['id']) -> delete();
+        // 封装返回的数据格式，注意以这个格式为统一格式，若有返回的数据全部封装在detail中
+        $arr = array(
+          "status" => 0,
+          "message" => "删除成功",
+          "timestamp" => $ctime,
+          "detail"=>array()
+        );
+        exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+    }
     }
   }
 
@@ -126,15 +139,30 @@ class MessageController extends Controller
     else
     {
       // 用id更新留言
-      M("message") -> where("id = '%s'",$post['detail']['id']) -> save($post['detail']);
-      // 封装返回的数据格式，注意以这个格式为统一格式，若有返回的数据全部封装在detail中
-      $arr = array(
-        "status" => 0,
-        "message" => "更新成功",
-        "timestamp" => $ctime,
-        "detail"=>array()
-      );
-      exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      if(!M("message") -> where("id = '%s'",$post['id']) -> select())
+      {
+        $arr = array(
+          "status" => 40000,
+          "message" => "留言信息不存在",
+          "timestamp" => $ctime,
+          "detail" => array()
+        );
+        exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
+      else
+      {
+        $post['detail']['ReplyDate'] = $ctime;
+        $post['detail']['admin_id'] = $memberId;
+        M("message") -> where("id = '%s'",$post['id']) -> save($post['detail']);
+        // 封装返回的数据格式，注意以这个格式为统一格式，若有返回的数据全部封装在detail中
+        $arr = array(
+          "status" => 0,
+          "message" => "更新成功",
+          "timestamp" => $ctime,
+          "detail"=>array()
+        );
+        exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
     }
   }
 
@@ -188,6 +216,8 @@ class MessageController extends Controller
     else
     {
       // 创建留言
+      $post['detail']['CustomerDate'] = $ctime;
+      $post['detail']['cus_id'] = $memberId;
       M("message") -> add($post['detail']);
       // 封装返回的数据格式，注意以这个格式为统一格式，若有返回的数据全部封装在detail中
       $arr = array(
@@ -251,16 +281,29 @@ class MessageController extends Controller
     else
     {
       // 用id更新留言
-      $status['status'] = $post['detail']['status'];
-      M("message") -> where("id = '%s'",$post['detail']['id']) -> save($status);
-      // 封装返回的数据格式，注意以这个格式为统一格式，若有返回的数据全部封装在detail中
-      $arr = array(
-        "status" => 0,
-        "message" => "更新成功",
-        "timestamp" => $ctime,
-        "detail"=> array()
-      );
-      exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      if(!M("message") -> where("id = '%s'",$post['id']) -> select())
+      {
+        $arr = array(
+          "status" => 40000,
+          "message" => "留言信息不存在",
+          "timestamp" => $ctime,
+          "detail" => array()
+        );
+        exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
+      else
+      {
+        $status['status'] = $post['detail']['status'];
+        M("message") -> where("id = '%s'",$post['detail']['id']) -> save($status);
+        // 封装返回的数据格式，注意以这个格式为统一格式，若有返回的数据全部封装在detail中
+        $arr = array(
+          "status" => 0,
+          "message" => "更新成功",
+          "timestamp" => $ctime,
+          "detail"=> array()
+        );
+        exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
     }
   }
 
@@ -330,7 +373,7 @@ class MessageController extends Controller
         }
         $arr = array(
           "status" => 0,
-          "message" => "无条件查询用户留言信息！",
+          "message" => "用户留言信息！",
           "timestamp" => $ctime,
           "detail" =>array($message)
         );
@@ -431,7 +474,7 @@ class MessageController extends Controller
         }
         $arr = array(
           "status" => 0,
-          "message" => "无条件查询用户留言信息！",
+          "message" => "用户留言信息！",
           "timestamp" => $ctime,
           "detail" =>array($message)
         );
@@ -457,7 +500,7 @@ class MessageController extends Controller
         }
         $arr = array(
           "status" => 0,
-          "message" => "用户订单信息！",
+          "message" => "用户留言信息！",
           "timestamp" => $ctime,
           "detail" =>array($message)
         );
