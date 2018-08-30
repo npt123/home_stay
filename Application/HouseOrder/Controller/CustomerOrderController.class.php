@@ -128,7 +128,7 @@ public function CheckOrder(){
   //  根据用户的memberId找到session中的token，并与用户的token进行比对
   //  如果token相同则代表登录状态正常
   $t1 = session("token".$memberId);
-
+  $detail = $post['detail'];
   //  如果token不存在，未登陆，返回错误
   if(!$t1){
     $arr = array(
@@ -150,24 +150,48 @@ public function CheckOrder(){
                            exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
                       }
   //如果token匹配，则用户身份确认，继续操作
-          else{
-
-                $find_order = M("house_order") -> where("memberId='$memberId'") ->select();
-                $ordernum = count($find_order);
-                $j =0;
-                for($i=0;$i<$ordernum;$i++){
-                  $order[$j][$i-(6*$j)]=$find_order[$i];
-                  if(count($order[$j])>5){$j=$j+1;}
-                }
-                $arr = array(
-                "status" => 0,
-                "message" => "用户订单信息！",
-                "timestamp" => $ctime,
-                "detail" =>array("orderInfo"=>$order)
-                );
-                exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
-
-            }
+  //无条件查询
+  else if(!$detail){
+        $find_order = M("house_order") -> where("memberId='$memberId'") ->select();
+        $ordernum = count($find_order);
+        $j =0;
+        for($i=0;$i<$ordernum;$i++){
+          $order[$j][$i-(6*$j)]=$find_order[$i];
+          if(count($order[$j])>5){$j=$j+1;}
+        }
+        $arr = array(
+        "status" => 0,
+        "message" => "用户订单信息！",
+        "timestamp" => $ctime,
+        "detail" =>array($order)
+        );
+        exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+       }
+       //else{exit(json_encode($detail,JSON_UNESCAPED_UNICODE));}
+       //有条件查询
+  else{
+      if($detail['HouseId'] != null){$condition['HouseId']=$detail['HouseId'];}
+      if($detail['status'] != null){$condition['status']=$detail['status'];}
+      if($detail['Price'] != null){$condition['Price']=$detail['Price'];}
+      if($detail['FromDate'] != null){$condition['FromDate']=$detail['FromDate'];}
+      if($detail['ToDate'] != null){$condition['ToDate']=$detail['ToDate'];}
+      if($detail['CreateDate'] != null){$condition['CreateDate']=$detail['CreateDate'];}
+      if($detail['LastChange'] != null){$condition['LastChange']=$detail['LastChange'];}
+      $find_order = M("house_order") -> where($condition) ->select();
+      $ordernum = count($find_order);
+      $j =0;
+      for($i=0;$i<$ordernum;$i++){
+        $order[$j][$i-(6*$j)]=$find_order[$i];
+        if(count($order[$j])>5){$j=$j+1;}
+      }
+      $arr = array(
+      "status" => 0,
+      "message" => "用户订单信息！",
+      "timestamp" => $ctime,
+      "detail" =>array($order)
+      );
+      exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+      }
 
 }
 public function UpdateOrder(){

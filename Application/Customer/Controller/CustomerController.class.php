@@ -168,10 +168,8 @@ public function Detail(){
             "status" => 0,
             "message" => "个人数据！",
             "timestamp" => $ctime,
-            "detail"=>array(
-              "memberInfo"=>$find_detail
-            )
-        );
+            "detail"=>array($find_detail)
+            );
         exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
       }
     }
