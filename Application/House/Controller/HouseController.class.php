@@ -191,16 +191,60 @@ class HouseController extends Controller
   {
     $ctime = date("Y-m-d H:i",time());
     // 查看房源
-    // M("house") -> select();
     // 封装返回的数据格式，注意以这个格式为统一格式，若有返回的数据全部封装在detail中
+    $find_order = M("house") -> select();
+    $ordernum = count($find_order);
+    for($i=0,$j=0;$i<$ordernum;$i++)
+    {
+      $order[$j][$i-6*$j] = $find_order[$i];
+      if(count($order[$j])>5)
+      {
+        $j++;
+      }
+    }
     $arr = array(
       "status" => 0,
       "message" => "房源信息",
       "timestamp" => $ctime,
-      "detail" => array(M("house") -> select())
+      "detail" => array($order)
     );
     exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
 
   }
+  public function DateHouse()
+  {
+    // $ctime = date("Y-m-d H:i",time());
+    $ctime = "2018-09-26";
+
+    // 查看房态
+    // 封装返回的数据格式，注意以这个格式为统一格式，若有返回的数据全部封装在detail中
+    $House = M("house_order") -> where("FromDate >= '$ctime'") -> group("id")-> select();
+    /*
+    for($i=0;$i<count($HouseNum);i++)
+    {
+      if($HouseNum[$i]['FromDate'])
+      {
+
+      }
+    }
+    */
+    // $FromDate = M("house_order") -> where("FromDate >= '$ctime'") -> field("FromDate") ->select();
+    // $ToDate = M("house_order") -> where("ToDate > '$ctime'") -> field("ToDate") ->select();
+    /*$HouseDate = array(
+      "HouseNum" => $HouseNum,
+      "FromDate" => $FromDate,
+      "ToDate" => $ToDate
+    );
+    */
+
+    $arr = array(
+      "status" => 0,
+      "message" => "房态信息",
+      "timestamp" => $ctime,
+      "detail" => array($House)
+    );
+    exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
+  }
 }
+
 ?>
