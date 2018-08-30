@@ -169,7 +169,7 @@ public function Detail(){
             "message" => "个人数据！",
             "timestamp" => $ctime,
             "detail"=>array($find_detail)
-            );
+           );
         exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
       }
     }
