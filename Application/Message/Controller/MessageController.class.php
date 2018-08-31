@@ -360,7 +360,7 @@ class MessageController extends Controller
       // 无条件查询
       if(!$detail)
       {
-        $find_message = M("message") -> where("cus_id='$memberId'") ->select();
+        $find_message = M("message") -> where("cus_id='$memberId'") -> order('id desc')->select();
         $messagenum = count($find_message);
         $j =0;
         for($i=0;$i<$messagenum;$i++)
@@ -389,7 +389,7 @@ class MessageController extends Controller
         if($detail['admin_id'] != null)     {$condition['admin_id']=$detail['admin_id'];}
         if($detail['CustomerDate'] != null) {$condition['CustomerDate']=$detail['CustomerDate'];}
         if($detail['ReplyDate'] != null)    {$condition['ReplyDate']=$detail['ReplyDate'];}
-        $find_message = M("message") -> where($condition) ->select();
+        $find_message = M("message") -> where($condition) -> order('id desc') ->select();
         $messagenum = count($find_message);
         $j =0;
         for($i=0;$i<$messagenum;$i++)
@@ -461,7 +461,7 @@ class MessageController extends Controller
       // 无条件查询
       if(!$detail)
       {
-        $find_message = M("message") -> select();
+        $find_message = M("message") -> order('id desc') -> select();
         $messagenum = count($find_message);
         $j =0;
         for($i=0;$i<$messagenum;$i++)
@@ -490,7 +490,7 @@ class MessageController extends Controller
         if($detail['admin_id'] != null)     {$condition['admin_id']=$detail['admin_id'];}
         if($detail['CustomerDate'] != null) {$condition['CustomerDate']=$detail['CustomerDate'];}
         if($detail['ReplyDate'] != null)    {$condition['ReplyDate']=$detail['ReplyDate'];}
-        $find_message = M("message") -> where($condition) ->select();
+        $find_message = M("message") -> where($condition) -> order('id desc') ->select();
         $messagenum = count($find_message);
         $j =0;
         for($i=0;$i<$messagenum;$i++)
