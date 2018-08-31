@@ -125,7 +125,7 @@ public function CheckOrder(){
   //如果token匹配，则用户身份确认，继续操作
           else{
 
-                  $find_order = M("house_order") -> where("memberId='$memberId'") ->select();
+                  $find_order = M("house_order") -> where("adminId='$memberId'") ->select();
                   $ordernum = count($find_order);
                   //六条记录一组存储
                   $j =0;
