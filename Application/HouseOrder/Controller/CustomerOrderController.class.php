@@ -55,7 +55,7 @@ public function CreateOrder(){
   }
   //如果token匹配，则用户身份确认，继续操作
   else{
-
+      $post['detail']['memberId']=$memberId;
       M('house_order') -> add($post['detail']);
 
       $arr = array(
@@ -114,7 +114,7 @@ public function CancelOrder(){
   //如果token匹配，则用户身份确认，继续操作
   else{
     $find_order = M('house_order') ->where("id='$orderId'")->find();
-    if($find_order['status']=="created" || $find_order['status']=="accept"){
+    if($find_order['status']=="created" || $find_order['status']=="accepted" || $find_order['status']=="refused"){
                                       $condition['id'] = $post['orderId'];
                                       M('house_order') -> where($condition)->delete();
                                       $arr = array(

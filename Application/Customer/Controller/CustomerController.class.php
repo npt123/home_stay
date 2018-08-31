@@ -313,7 +313,7 @@ public function Logout(){
       }
       //如果token匹配，则用户身份确认，继续操作
       else{
-        session_unset("token".$memberId);
+        session("token".$memberId,null);
         $arr = array(
             "status" => 0,
             "message" => "退出登录！",
