@@ -2,7 +2,7 @@
 namespace HouseOrder\Controller;
 use Think\Controller;
 // 指定允许其他域名访问
-header('Access-Control-Allow-Origin:http://localhost:8080');
+header('Access-Control-Allow-Origin:http://localhost:8081');
 // 响应类型
 header('Access-Control-Allow-Methods:PUT,POST,GET,DELETE');
 // 响应头设置
