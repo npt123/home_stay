@@ -125,7 +125,9 @@ public function Logout(){
           "status" => 30000,
           "message" => "用户权限不匹配！",
           "timestamp" => $ctime,
-          "detail" => array(),
+          "detail" => array(
+            session()
+          ),
         );
          exit(json_encode($arr,JSON_UNESCAPED_UNICODE));
       }
@@ -516,7 +518,7 @@ public function Deleteadmin(){
                     }
                     $arr = array(
                     "status" => 0,
-                    "message" => "管理员订单信息！",
+                    "message" => "用户信息！",
                     "timestamp" => $ctime,
                     "detail" =>array("orderInfo"=>$order)
                     );
