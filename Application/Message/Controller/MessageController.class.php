@@ -399,7 +399,7 @@ class MessageController extends Controller
         }
         $arr = array(
           "status" => 0,
-          "message" => "用户订单信息！",
+          "message" => "用户留言信息！",
           "timestamp" => $ctime,
           "detail" =>array($message)
         );
